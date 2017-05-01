@@ -1,0 +1,29 @@
+version: "2"
+
+services:
+  db:
+    container_name: "compose-sample-db"
+    image: mysql:5.6
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./db/data:/var/lib/mysql
+      - ./db/conf/custom.cnf:/etc/mysql/conf.d/custom.cnf
+      - "../docs/dumpfile.sql:/docker-entrypoint-initdb.d/myinit.sql"
+    environment:
+       MYSQL_ROOT_PASSWORD: password
+       MYSQL_DATABASE: database_name
+       MYSQL_USER: user_name
+       MYSQL_PASSWORD: password
+
+  web:
+    container_name: "compose-sample-web"
+    image: zakki0x77aa00/php:5.6.30-apache
+    ports:
+      - "80:80"
+    volumes:
+      - ../source:/var/www/html
+    depends_on:
+      - db
+    environment:
+      DB_HOST: "db:3306"

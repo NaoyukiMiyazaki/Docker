@@ -1,0 +1,23 @@
+[mysqld]
+sql-mode=NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES
+skip-character-set-client-handshake
+character-set-server=utf8
+collation-server=utf8_general_ci
+init-connect=SET NAMES utf8
+explicit-defaults-for-timestamp=true
+slow-query-log=1
+slow-query-log-file=/var/log/mysql/slow_query.log
+long-query-time=5
+
+[client]
+default-character-set=utf8
+
+[mysql]
+default-character-set=utf8
+
+[mysqldump]
+default-character-set=utf8
+
+[mysqld_safe]
+log-error=/var/log/mysql/mysqld.log
+default-character-set=utf8
