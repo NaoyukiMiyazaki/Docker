@@ -11,10 +11,11 @@ services:
       - ./db/conf/custom.cnf:/etc/mysql/conf.d/custom.cnf
       - "../docs/dumpfile.sql:/docker-entrypoint-initdb.d/myinit.sql"
     environment:
-       MYSQL_ROOT_PASSWORD: password
-       MYSQL_DATABASE: database_name
-       MYSQL_USER: user_name
-       MYSQL_PASSWORD: password
+      TZ: "Asia/Tokyo"
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: database_name
+      MYSQL_USER: user_name
+      MYSQL_PASSWORD: password
 
   web:
     container_name: "compose-sample-web"
@@ -26,4 +27,5 @@ services:
     depends_on:
       - db
     environment:
+      TZ: "Asia/Tokyo"
       DB_HOST: "db:3306"
